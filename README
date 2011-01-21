@@ -1,0 +1,8 @@
+# This project contains several examples for using CDI/Weld.
+# 
+# @author Marcel.Birkner@gmail.com
+
+# Build project
+mvn clean install
+
+
