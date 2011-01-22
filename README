@@ -1,8 +1,40 @@
-# This project contains several examples for using CDI/Weld.
+################################################################
+#
+# This project contains an example for using CDI. In this 
+# project we use the reference implementation of CDI 
+# that is called JBoss Weld.
 # 
-# @author Marcel.Birkner@gmail.com
+# Requirements:
+# - Maven 3.0.1 (or greater)
+# - Java EE 6
+# 
+# @author Marcel Birkner
 
-# Build project
-mvn clean install
+# to run the example use
+mvn -Drun
 
+
+
+################################################################
+# The result should look like the following
+
+...
+
+484 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.MultiCarManufacturer - 
+
+I am a Family Car and these are my features:  
+- tires  :: regular tires
+- body   :: regular body
+- engine :: Engine Type :: diesel
+
+484 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.MultiCarManufacturer - 
+
+I am a SportsCar and these are my features:  
+- tires  :: race tires
+- body   :: regular body
+- engine :: Engine Type :: racefuel
+
+...
+
+################################################################
 
