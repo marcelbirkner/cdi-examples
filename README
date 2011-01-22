@@ -10,13 +10,27 @@
 # 
 # @author Marcel Birkner
 
-# to run the example use
-mvn -Drun
-
-
+################################################################
+# Description:
+#
+# This project uses several features of CDI. These features 
+# include typesafe dependency injection, Qualifiers, 
+# Producer Methods, Producers Fields, Qualifier Members, ...
+#
+# Over time we will add more complex features to show how
+# powerful CDI is.
+#
 
 ################################################################
-# The result should look like the following
+# Running the example:
+
+cdi-examples> mvn -Drun
+
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Weld Example :: Car Manufacturing 1.1.0.Final
+[INFO] ------------------------------------------------------------------------
 
 ...
 
@@ -36,5 +50,8 @@ I am a SportsCar and these are my features:
 
 ...
 
-################################################################
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
 
+################################################################
