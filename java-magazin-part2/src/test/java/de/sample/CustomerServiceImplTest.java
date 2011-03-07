@@ -1,6 +1,6 @@
 package de.sample;
 
-import static org.testng.AssertJUnit.*;
+import static org.testng.AssertJUnit.assertEquals;
 
 import java.io.IOException;
 import java.util.List;

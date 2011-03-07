@@ -14,7 +14,41 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<weld.version>1.0.1-Final</weld.version>
 		<cxf.version>2.3.3</cxf.version>
+		<arquillian.version>1.0.0.Alpha1</arquillian.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Maven Repository Group</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Maven Repository Group</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<dependencies>
 		<!-- For Testing -->
@@ -25,28 +59,30 @@
 			<classifier>jdk15</classifier>
 			<scope>test</scope>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 			<version>1.8.5</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Arquillian and ShrinkWrap -->
 		<dependency>
 			<groupId>org.jboss.arquillian</groupId>
 			<artifactId>arquillian-testng</artifactId>
-			<version>1.0.0.Alpha1</version>
+			<version>${arquillian.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.arquillian</groupId>
 			<artifactId>arquillian-api</artifactId>
-			<version>1.0.0.Alpha1</version>
+			<version>${arquillian.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.arquillian.container</groupId>
 			<artifactId>arquillian-weld-embedded</artifactId>
-			<version>1.0.0.Alpha1</version>
+			<version>${arquillian.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -61,6 +97,7 @@
 			<version>1.0.0-alpha-5</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
@@ -94,7 +131,7 @@
 			<version>1.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
@@ -164,5 +201,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>
