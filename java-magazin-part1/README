@@ -1,8 +1,6 @@
 ################################################################
 #
-# This project contains an example for using CDI. In this 
-# project we use the reference implementation of CDI 
-# that is called JBoss Weld.
+# This project is used in an Java Magazin article in March 2011
 # 
 # Requirements:
 # - Maven 3.0.1 (or greater)
@@ -24,7 +22,7 @@
 ################################################################
 # Running the example:
 
-cdi-examples> mvn -Drun
+> mvn -Drun
 
 [INFO] Scanning for projects...
 [INFO]                                                                         
