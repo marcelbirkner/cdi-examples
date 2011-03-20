@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<!-- Model Information -->
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.sample</groupId>
+	<artifactId>cdi-example-part3</artifactId>
+	<version>1.0.0</version>
+
+	<name>CDI Example :: Customer Web Service :: Part 3</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		
+		<!-- Test Dependencies -->
+		<dependency>
+			<groupId>org.jboss.arquillian</groupId>
+			<artifactId>arquillian-junit</artifactId>
+			<version>${arquillian.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${version.junit}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!-- Container Profiles -->
+	<profiles>
+
+		<!-- OpenEJB Embedded 3 container profile -->
+		<profile>
+			<id>openejb-embedded-3</id>
+
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<properties>
+				<version.org.apache.openejb_openejb.core>3.1.4</version.org.apache.openejb_openejb.core>
+				<version.org.jboss.ejb3>3.1.0</version.org.jboss.ejb3>
+				<version.javax.enterprise.cdi>1.0-SP3</version.javax.enterprise.cdi>
+			</properties>
+
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.ejb3</groupId>
+					<artifactId>jboss-ejb3-api</artifactId>
+					<version>${version.org.jboss.ejb3}</version>
+				</dependency>
+				<!--
+					TODO This should not be required.
+					https://jira.jboss.org/browse/ARQ-157
+				-->
+				<dependency>
+					<groupId>javax.enterprise</groupId>
+					<artifactId>cdi-api</artifactId>
+					<version>${version.javax.enterprise.cdi}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.container</groupId>
+					<artifactId>arquillian-openejb-embedded-3.1</artifactId>
+					<version>${arquillian.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.openejb</groupId>
+					<artifactId>openejb-core</artifactId>
+					<version>${version.org.apache.openejb_openejb.core}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+
+		<!--
+			Glassfish Embedded 3 container profile. Profile activated by default.
+		-->
+		<profile>
+			<id>glassfish-embedded-3</id>
+
+			<properties>
+				<version.org.glassfish.embedded>3.1-b13</version.org.glassfish.embedded>
+			</properties>
+
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.arquillian.container</groupId>
+					<artifactId>arquillian-glassfish-embedded-3</artifactId>
+					<version>${arquillian.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.glassfish.extras</groupId>
+					<artifactId>glassfish-embedded-all</artifactId>
+					<version>${version.org.glassfish.embedded}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+
+		<!-- JBoss AS Embedded 6 container profile -->
+		<!--
+			TODO expects tests ending *IT - Find compromise with other profiles.
+			prefer using *Test suffix
+		-->
+		<profile>
+			<id>jbossas-embedded-6</id>
+
+			<properties>
+				<!-- The target version of AS to be used -->
+				<version.org.jboss.jbossas>6.0.0.Final</version.org.jboss.jbossas>
+
+				<!-- jboss.home (We'll unpack into here -->
+				<jboss.home>${project.build.directory}/jboss-${version.org.jboss.jbossas}</jboss.home>
+			</properties>
+
+			<!--
+				We also need to place the AS depchain into the
+				"dependencyManagement" section in import scope so that Maven
+				respects the "exclusion" elements configured
+			-->
+			<dependencyManagement>
+				<dependencies>
+
+					<!-- org.jboss.jbossas -->
+					<dependency>
+						<groupId>org.jboss.jbossas</groupId>
+						<artifactId>jboss-as-depchain</artifactId>
+						<version>${version.org.jboss.jbossas}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+				</dependencies>
+
+			</dependencyManagement>
+
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.arquillian.container</groupId>
+					<artifactId>arquillian-jbossas-embedded-6</artifactId>
+					<version>${arquillian.version}</version>
+				</dependency>
+
+				<dependency>
+					<groupId>org.jboss.jbossas</groupId>
+					<artifactId>jboss-as-depchain</artifactId>
+					<version>${version.org.jboss.jbossas}</version>
+					<type>pom</type>
+					<scope>compile</scope>
+					<!-- Should be "test", but I can't find the GAV for JPA APIs -->
+				</dependency>
+			</dependencies>
+
+			<build>
+
+				<plugins>
+
+					<!-- Get AS and put into "target" -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>unpack</id>
+								<phase>generate-test-resources</phase>
+								<!-- So run before testing -->
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>org.jboss.jbossas</groupId>
+											<artifactId>jboss-as-distribution</artifactId>
+											<version>${version.org.jboss.jbossas}</version>
+											<type>zip</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>${project.build.directory}</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>2.6</version>
+
+						<configuration>
+							<additionalClasspathElements>
+								<additionalClasspathElement>${jboss.home}/client/jbossws-native-client.jar</additionalClasspathElement>
+								<additionalClasspathElement>${jboss.home}/server/default/deploy/jbossweb.sar</additionalClasspathElement>
+							</additionalClasspathElements>
+
+							<trimStackTrace>false</trimStackTrace>
+							<printSummary>true</printSummary>
+
+							<!-- Caution: no linebreak here !-->
+							<argLine>-Xmx512m -XX:MaxPermSize=256m
+								-Djava.net.preferIPv4Stack=true
+								-Djava.util.logging.manager=org.jboss.logmanager.LogManager
+								-Djava.endorsed.dirs=${jboss.home}/lib/endorsed
+								-Djboss.home=${jboss.home}
+								-Djboss.boot.server.log.dir=${jboss.home}
+								-Dorg.jboss.reflect.spi.TypeInfoFactory=org.jboss.reflect.plugins.introspection.IntrospectionTypeInfoFactory</argLine>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<!-- Repositories -->
+	<repositories>
+		<repository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Maven Repository Group</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/public</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Maven Repository Group</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<properties>
+		<version.junit>4.8.1</version.junit>
+		<arquillian.version>1.0.0.Alpha4</arquillian.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<!-- JDK 1.5 or above required -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
