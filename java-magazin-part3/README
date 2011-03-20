@@ -1,31 +1,21 @@
-################################################################
-#
-# This project is used in an Java Magazin article in Mai 2011
-#
+##########################################
 # CDI Features:
-#
+# 
 # - Interceptors
-# - Decorators
 # - Events
-# - Stereotypes
-#
-# Requirements:
-# - Maven 3.0.1 (or greater)
-# - Java EE 6
-# 
-# @author Marcel Birkner
-# @author Daniel Arndt
+# - Decorators
+# - Stereotypes 
 # 
 
-################################################################
-# Description:
-#
-# This project describes the use of Mockito and Arquillian
-# for unit and integration testing
+##########################################
+# Running the examples
 #
 
-################################################################
-# Running the example:
+# OpenEJB embedded container
+mvn test
+ 
+# GF embedded 3
+mvn test -Pglassfish-embedded-3
 
-> mvn clean install
-
+# JBoss AS Embedded 6
+mvn test -Pjbossas-embedded-6
