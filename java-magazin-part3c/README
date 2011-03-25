@@ -1,0 +1,15 @@
+################################################################
+#
+# This project is used in an Java Magazin article in Mai 2011
+# 
+# Requirements:
+# - Maven 3.0.1 (or greater)
+# - Java EE 6
+# 
+# @author Marcel Birkner
+# @author Daniel Arndt
+
+################################################################
+# Running the example:
+
+> mvn -Drun
