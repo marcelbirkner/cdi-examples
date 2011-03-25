@@ -11,11 +11,16 @@ import de.sample.interceptors.AuditTime;
 public class UserRegistration {
 
 	@Inject Logger log;
+	@Inject UserRegistrationService service;
 	
 	@AuditTime
 	public void registerUser( @Observes ContainerInitialized init) throws InterruptedException {
 		log.info( "Start registration"  );
-		UserRegistrationService service = new UserRegistrationServiceImpl();
-		log.info( service.register() );
+		log.info( service.register().toString() );
+		
+		// Added for AuditTime Interceptor
+		Thread.sleep( 10L );
+		
+		log.info( "End registration"  );
 	}
 }

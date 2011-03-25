@@ -10,6 +10,7 @@ public class LogFactory {
 
 	@Produces 
 	Logger createLogger( InjectionPoint injectionPoint ) { 
-		return LoggerFactory.getLogger(injectionPoint.getMember().getDeclaringClass().getName()); 
+		String className = injectionPoint.getMember().getDeclaringClass().getName();
+		return LoggerFactory.getLogger( className ); 
 	}
 }
