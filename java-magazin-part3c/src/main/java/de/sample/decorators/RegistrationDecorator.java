@@ -14,14 +14,12 @@ import de.sample.UserRegistrationService;
 public abstract class RegistrationDecorator implements UserRegistrationService {
 
 	private @Inject Logger log;
-
 	private @Inject @Delegate UserRegistrationService service;
 
 	public RegistrationStatus register() {
-		log.info( "register :: check user if email address is possible spam");
 		User u = service.getUser();
 		if ( u.getEmail().startsWith("spam" ) ) {
-			log.info( "spam email account found" );
+			log.info( "SPAM email account found" );
 			return RegistrationStatus.SPAM;
 		}
 		return service.register();

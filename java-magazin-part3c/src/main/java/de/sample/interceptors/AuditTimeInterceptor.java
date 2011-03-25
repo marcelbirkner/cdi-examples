@@ -9,7 +9,6 @@ import javax.interceptor.InvocationContext;
 
 import org.slf4j.Logger;
 
-
 @AuditTime
 @Interceptor
 public class AuditTimeInterceptor implements Serializable {

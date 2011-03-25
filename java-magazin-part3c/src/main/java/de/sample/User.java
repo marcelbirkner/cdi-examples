@@ -2,7 +2,7 @@ package de.sample;
 
 public class User {
 
-	private String email = "spam@webmail.de";
+	private String email = "validEmail@mail.com";
 	
 	public String getEmail() {
 		return this.email;

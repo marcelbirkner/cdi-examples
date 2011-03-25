@@ -16,7 +16,10 @@ public class UserRegistration {
 	@AuditTime
 	public void registerUser( @Observes ContainerInitialized init) throws InterruptedException {
 		log.info( "Start registration"  );
-		log.info( service.register().toString() );
+
+		for (int i = 0; i < 10; i++) {
+			log.info( "Registration Status: " + service.register() + "\n");
+		}
 		
 		// Added for AuditTime Interceptor
 		Thread.sleep( 10L );
