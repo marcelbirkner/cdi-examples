@@ -13,6 +13,7 @@ import de.sample.UserRegistrationService;
 @Decorator
 public abstract class RegistrationDecorator implements UserRegistrationService {
 
+	
 	private @Inject Logger log;
 	private @Inject @Delegate UserRegistrationService service;
 

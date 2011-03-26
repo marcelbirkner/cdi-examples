@@ -13,3 +13,52 @@
 # Running the example:
 
 > mvn -Drun
+
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Weld :: Advanced Features Example
+[INFO]    task-segment: [package]
+[INFO] ------------------------------------------------------------------------
+
+...
+
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.interceptors.AuditTimeInterceptor - Start :: UserRegistration.registerUser
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.UserRegistration - Start registration
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.decorators.RegistrationDecorator - SPAM email account found
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.UserRegistration - Registration Status: Registrierung aufgrund von Spam abgebrochen
+
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.UserRegistration - Registration Status: Registrierung erfolgreich
+
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.decorators.RegistrationDecorator - SPAM email account found
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.UserRegistration - Registration Status: Registrierung aufgrund von Spam abgebrochen
+
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.decorators.RegistrationDecorator - SPAM email account found
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.UserRegistration - Registration Status: Registrierung aufgrund von Spam abgebrochen
+
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.decorators.RegistrationDecorator - SPAM email account found
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.UserRegistration - Registration Status: Registrierung aufgrund von Spam abgebrochen
+
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.decorators.RegistrationDecorator - SPAM email account found
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.UserRegistration - Registration Status: Registrierung aufgrund von Spam abgebrochen
+
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.decorators.RegistrationDecorator - SPAM email account found
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.UserRegistration - Registration Status: Registrierung aufgrund von Spam abgebrochen
+
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.decorators.RegistrationDecorator - SPAM email account found
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.UserRegistration - Registration Status: Registrierung aufgrund von Spam abgebrochen
+
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.decorators.RegistrationDecorator - SPAM email account found
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.UserRegistration - Registration Status: Registrierung aufgrund von Spam abgebrochen
+
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.decorators.RegistrationDecorator - SPAM email account found
+500 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.UserRegistration - Registration Status: Registrierung aufgrund von Spam abgebrochen
+
+516 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.UserRegistration - End registration
+516 [org.jboss.weld.environment.se.StartMain.main()] INFO de.sample.interceptors.AuditTimeInterceptor - Invocation time :: UserRegistration.registerUser is 16
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESSFUL
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3 seconds
+[INFO] Finished at: Sat Mar 26 23:50:55 CET 2011
+[INFO] Final Memory: 25M/60M
+[INFO] ------------------------------------------------------------------------

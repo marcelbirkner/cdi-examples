@@ -7,7 +7,7 @@ import javax.interceptor.*;
  
 @Inherited
 @InterceptorBinding
-@Target({TYPE, METHOD})
 @Retention(RUNTIME)
+@Target({TYPE, METHOD})
 public @interface AuditTime {
 }
