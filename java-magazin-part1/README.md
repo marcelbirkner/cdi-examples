@@ -1,3 +1,5 @@
+[![Build Status](https://buildhive.cloudbees.com/job/marcelbirkner/job/cdi-examples/badge/icon)](https://buildhive.cloudbees.com/job/marcelbirkner/job/cdi-examples/)
+
 This project is used in an Java Magazin article in March 2011
 
 Requirements:
